@@ -1,0 +1,8 @@
+{
+  "name": "ticTacToe",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "author": "Lucas Deschamps",
+  "license": "MIT"
+}
