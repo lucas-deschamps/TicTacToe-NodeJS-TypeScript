@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
+  "scripts": {
+    "start": "node --es-module-specifier-resolution=node ./build/index.js",
+    "build": "tsc --project ./tsconfig.json"
+  },
   "author": "Lucas Deschamps",
   "license": "MIT"
 }
