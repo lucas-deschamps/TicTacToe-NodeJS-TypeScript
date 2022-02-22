@@ -1,4 +1,4 @@
-import * as readline from 'readline';
+import readline from 'readline';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -36,8 +36,6 @@ rl.on('line', (col: any) => {
     process.exit(1);
   }
 
-  console.log('\nInput:', col);
-
   rl.question('\nPlease choose your move\'s row (values 1-3).\n> ', (row: any) => {
     row = parseInt(row) - 1;
     
@@ -57,18 +55,18 @@ rl.on('line', (col: any) => {
       || gameGrid[adversaryCol][adversaryRow] === BoardMark.Computer
     ) [ adversaryCol, adversaryRow ] = adversaryPos();
     
-    gameGrid[adversaryCol][adversaryRow] = BoardMark.Computer 
+    gameGrid[adversaryCol][adversaryRow] = BoardMark.Computer;
      
     console.log('\nAdversary move completed.');
+    
+    console.log('\nGAME:');
 
-    console.log('\ngame grid:', gameGrid);
-    console.log('\ngame:');
     console.log(`
-        |   |
-     _${gameGrid[0][0] || ' '}_+_${gameGrid[0][1] || ' '}_+_${gameGrid[0][2] || ' '}_
-        |   |
-     _${gameGrid[1][0] || ' '}_+_${gameGrid[1][1] || ' '}_+_${gameGrid[1][2] || ' '}_
-      ${gameGrid[2][0] || ' '} | ${gameGrid[2][1] || ' '} | ${gameGrid[2][2] || ' '}
+         |   |
+      _${gameGrid[0][0] || ' '}_+_${gameGrid[0][1] || ' '}_+_${gameGrid[0][2] || ' '}_
+         |   |
+      _${gameGrid[1][0] || ' '}_+_${gameGrid[1][1] || ' '}_+_${gameGrid[1][2] || ' '}_
+       ${gameGrid[2][0] || ' '} | ${gameGrid[2][1] || ' '} | ${gameGrid[2][2] || ' '}
     `);
     
     rl.prompt();
