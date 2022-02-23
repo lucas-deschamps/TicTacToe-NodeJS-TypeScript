@@ -1,4 +1,5 @@
 import readline from 'readline';
+import { checkWinCondition as checkWin } from './check-win';
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -48,6 +49,8 @@ rl.on('line', (row) => {
       _${gameGrid[1][0] || ' '}_+_${gameGrid[1][1] || ' '}_+_${gameGrid[1][2] || ' '}_
        ${gameGrid[2][0] || ' '} | ${gameGrid[2][1] || ' '} | ${gameGrid[2][2] || ' '}
     `);
+        checkWin(gameGrid, BoardMark.Player);
+        checkWin(gameGrid, BoardMark.Computer);
         rl.prompt();
     });
 });

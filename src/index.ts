@@ -70,6 +70,9 @@ rl.on('line', (row: string | number) => {
       _${gameGrid[1][0] || ' '}_+_${gameGrid[1][1] || ' '}_+_${gameGrid[1][2] || ' '}_
        ${gameGrid[2][0] || ' '} | ${gameGrid[2][1] || ' '} | ${gameGrid[2][2] || ' '}
     `);
+
+    checkWin(gameGrid, BoardMark.Player);
+    checkWin(gameGrid, BoardMark.Computer);
     
     rl.prompt();
   });
