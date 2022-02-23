@@ -1,20 +1,22 @@
 import readline from 'readline';
 
+import { checkWinCondition as checkWin } from './check-win';
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-enum BoardMark {
+export enum BoardMark {
   Player = 'X',
   Computer = 'O'
 }
 
-const gameGrid: string[][] = Array.from(new Array(3), () => new Array(3).fill(''));
+const gameGrid: string[][] = Array.from(Array(3), () => new Array(3).fill(''));
 
 const adversaryPos = (): number[] => [Math.floor(Math.random() * gameGrid.length), Math.floor(Math.random() * gameGrid.length)];
 
-rl.setPrompt('\nPlease choose your move\'s column (values 1-3).\n> ');
+rl.setPrompt('\nPlease choose your move\'s row (values 1 to 3).\n> ');
 
 const gameIntro = `  TIC-TAC-TOE
      |   |
@@ -28,34 +30,34 @@ console.log(gameIntro);
 
 rl.prompt();
 
-rl.on('line', (col: any) => {
-  col = parseInt(col) - 1;
+rl.on('line', (row: string | number) => {
+  row = parseInt(row as string) - 1;
   
-  if (![0, 1, 2].includes(col)) {
+  if (![0, 1, 2].includes(row)) {
     console.log('Invalid option. Game over.\n');
     process.exit(1);
   }
 
-  rl.question('\nPlease choose your move\'s row (values 1-3).\n> ', (row: any) => {
-    row = parseInt(row) - 1;
+  rl.question('\nPlease choose your move\'s column (values 1 to 3).\n> ', (col: string | number) => {
+    col = parseInt(col as string) - 1;
     
-    if (![0, 1, 2].includes(row)) {
+    if (![0, 1, 2].includes(col)) {
       console.log('Invalid option. Game over.\n');
       process.exit(1);
     }
     
-    gameGrid[col][row] = BoardMark.Player;
+    gameGrid[row][col] = BoardMark.Player;
 
     console.log('\nMove completed.');
 
-    let [ adversaryCol, adversaryRow ] = adversaryPos();
+    let [ adversaryRow, adversaryCol ] = adversaryPos();
 
     while (
-      gameGrid[adversaryCol][adversaryRow] === BoardMark.Player 
-      || gameGrid[adversaryCol][adversaryRow] === BoardMark.Computer
-    ) [ adversaryCol, adversaryRow ] = adversaryPos();
+      gameGrid[adversaryRow][adversaryCol] === BoardMark.Player 
+      || gameGrid[adversaryRow][adversaryCol] === BoardMark.Computer
+    ) [ adversaryRow, adversaryCol ] = adversaryPos();
     
-    gameGrid[adversaryCol][adversaryRow] = BoardMark.Computer;
+    gameGrid[adversaryRow][adversaryCol] = BoardMark.Computer;
      
     console.log('\nAdversary move completed.');
     
