@@ -1,5 +1,6 @@
 import readline from 'readline';
 import { checkWinCondition as checkWin } from './check-win';
+import { checkPlayerMove, checkComputerMove } from './check-move';
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -10,7 +11,7 @@ export var BoardMark;
     BoardMark["Computer"] = "O";
 })(BoardMark || (BoardMark = {}));
 const gameGrid = Array.from(Array(3), () => new Array(3).fill(''));
-const adversaryPos = () => [Math.floor(Math.random() * gameGrid.length), Math.floor(Math.random() * gameGrid.length)];
+export const adversaryPos = () => [Math.floor(Math.random() * gameGrid.length), Math.floor(Math.random() * gameGrid.length)];
 rl.setPrompt('\nPlease choose your move\'s row (values 1 to 3).\n> ');
 const gameIntro = `  TIC-TAC-TOE
      |   |
@@ -33,12 +34,10 @@ rl.on('line', (row) => {
             console.log('Invalid option. Game over.\n');
             process.exit(1);
         }
+        checkPlayerMove(gameGrid, +row, +col);
         gameGrid[row][col] = BoardMark.Player;
         console.log('\nMove completed.');
-        let [adversaryRow, adversaryCol] = adversaryPos();
-        while (gameGrid[adversaryRow][adversaryCol] === BoardMark.Player
-            || gameGrid[adversaryRow][adversaryCol] === BoardMark.Computer)
-            [adversaryRow, adversaryCol] = adversaryPos();
+        const [adversaryRow, adversaryCol] = checkComputerMove(gameGrid);
         gameGrid[adversaryRow][adversaryCol] = BoardMark.Computer;
         console.log('\nAdversary move completed.');
         console.log('\nGAME:');
