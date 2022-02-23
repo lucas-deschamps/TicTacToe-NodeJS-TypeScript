@@ -1,5 +1,6 @@
 import readline from 'readline';
 
+import { validateInput } from './check-input';
 import { checkWinCondition as checkWin } from './check-win';
 import { checkPlayerMove, checkComputerMove } from './check-move';
 
@@ -34,18 +35,13 @@ rl.prompt();
 rl.on('line', (row: string | number) => {
   row = parseInt(row as string) - 1;
   
-  if (![0, 1, 2].includes(row)) {
-    console.log('Invalid option. Game over.\n');
-    process.exit(1);
-  }
+  validateInput(row);
 
   rl.question('\nPlease choose your move\'s column (values 1 to 3).\n> ', (col: string | number) => {
     col = parseInt(col as string) - 1;
     
-    if (![0, 1, 2].includes(col)) {
-      console.log('Invalid option. Game over.\n');
-      process.exit(1);
-    }
+    validateInput(col);
+    
 
     checkPlayerMove(gameGrid, +row, +col);
 
