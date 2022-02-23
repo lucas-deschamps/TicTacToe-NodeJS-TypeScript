@@ -1,6 +1,6 @@
 import { BoardMark } from './index';
 
-export const checkWinCondition = (gameGrid: string[][], mark: string): boolean => {
+export const checkWinCondition = (gameGrid: string[][], mark: string): void => {
   if ( (
       gameGrid[0][0] === mark
       && gameGrid[1][1] === mark
@@ -41,6 +41,4 @@ export const checkWinCondition = (gameGrid: string[][], mark: string): boolean =
 
       process.exit(0);
   }
-  
-  return false;
 };

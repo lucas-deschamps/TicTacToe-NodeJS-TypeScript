@@ -22,5 +22,4 @@ export const checkWinCondition = (gameGrid, mark) => {
             : console.log('You win. Congratulations.\n');
         process.exit(0);
     }
-    return false;
 };
