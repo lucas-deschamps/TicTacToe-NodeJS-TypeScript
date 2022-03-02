@@ -35,9 +35,19 @@ export const checkWinCondition = (gameGrid: string[][], mark: string): void => {
       && gameGrid[2][0] === mark
     )
   ) {
+      console.log('\nRESULT:');
+
+      console.log(`
+           |   |
+        _${gameGrid[0][0] || ' '}_+_${gameGrid[0][1] || ' '}_+_${gameGrid[0][2] || ' '}_
+           |   |
+        _${gameGrid[1][0] || ' '}_+_${gameGrid[1][1] || ' '}_+_${gameGrid[1][2] || ' '}_
+         ${gameGrid[2][0] || ' '} | ${gameGrid[2][1] || ' '} | ${gameGrid[2][2] || ' '}
+      `);
+
       mark === BoardMark.Computer ? 
-        console.log('The computer won. Wow.\n')
-        : console.log('You win. Congratulations.\n');
+      console.log('\nThe computer won. Wow.\n')
+      : console.log('\nYou win. Congratulations.\n');
 
       process.exit(0);
   }

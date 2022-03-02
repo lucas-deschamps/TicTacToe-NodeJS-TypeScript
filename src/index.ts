@@ -22,10 +22,10 @@ rl.setPrompt('\nPlease choose your move\'s row (values 1 to 3).\n> ');
 
 const gameIntro = `  TIC-TAC-TOE
      |   |
-  _${gameGrid[0][0]} _+_${gameGrid[0][1]} _+_${gameGrid[0][2]} _
+  _ _+_ _+_ _
      |   |
-  _${gameGrid[1][0]} _+_${gameGrid[1][1]} _+_${gameGrid[1][2]} _
-   ${gameGrid[2][0]}  | ${gameGrid[2][1]}  | ${gameGrid[2][2]}
+  _ _+_ _+_ _
+     |   | 
 `;
 
 console.log(gameIntro);
@@ -41,21 +41,24 @@ rl.on('line', (row: string | number) => {
     col = parseInt(col as string) - 1;
     
     validateInput(col);
-    
 
+    // Player logic
     checkPlayerMove(gameGrid, +row, +col);
 
     gameGrid[row][col] = BoardMark.Player;
 
     console.log('\nMove completed.');
 
-
+    checkWin(gameGrid, BoardMark.Player);
+    
+    // Adversary logic
     const [ adversaryRow, adversaryCol ] = checkComputerMove(gameGrid);
     
     gameGrid[adversaryRow][adversaryCol] = BoardMark.Computer;
      
     console.log('\nAdversary move completed.');
-    
+
+    checkWin(gameGrid, BoardMark.Computer);
     
     console.log('\nGAME:');
 
@@ -66,9 +69,6 @@ rl.on('line', (row: string | number) => {
       _${gameGrid[1][0] || ' '}_+_${gameGrid[1][1] || ' '}_+_${gameGrid[1][2] || ' '}_
        ${gameGrid[2][0] || ' '} | ${gameGrid[2][1] || ' '} | ${gameGrid[2][2] || ' '}
     `);
-
-    checkWin(gameGrid, BoardMark.Player);
-    checkWin(gameGrid, BoardMark.Computer);
     
     rl.prompt();
   });
