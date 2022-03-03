@@ -17,6 +17,7 @@
 
     /* Type Checking */
     "strict": true,                                      /* Enable all strict type-checking options. */
+    "strictNullChecks": false,
     "suppressImplicitAnyIndexErrors": true,
 
     /* Completeness */
