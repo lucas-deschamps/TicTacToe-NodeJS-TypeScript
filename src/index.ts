@@ -37,7 +37,7 @@ class TicTacToe implements ITicTacToe {
     });
   }
 
-  public start() {
+  public start(): void {
     rl.prompt();
 
     rl.on('line', (row: number) => {
