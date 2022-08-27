@@ -1,4 +1,4 @@
-import { BoardMark } from './index';
+import { BoardMark } from "../models/board";
 
 export const checkWinCondition = (gameGrid: string[][], mark: BoardMark): void => {
   if (checkHorizontalWin(gameGrid, mark) || checkVerticalWin(gameGrid, mark) || checkDiagonalWin(gameGrid, mark)) {
