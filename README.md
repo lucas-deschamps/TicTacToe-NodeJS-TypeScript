@@ -1,15 +1,17 @@
 # TicTacToe-NodeJS-TypeScript
 
-A simplistic implementation of tic-tac-toe using Node.js, TypeScript, the readline module, and events.
+A simple implementation of tic-tac-toe using Node.js, TypeScript, the readline module, and events.
 
 Main logic can be found at:
 
-* `./src/index.ts`
+* `./src/game-logic`
 
 # How To Run It
 
-Clone the repo, then run `yarn start` from your CLI.
+Clone the repo, install or enable `yarn` if not installed, then run `yarn` from your CLI.
 
-* Run `yarn install` beforehand if you want to play around with the code.
+* Run `yarn dev` if you want to play around with the code.
 
-* The project uses the command `yarn build` to compile the TS code into JS.
+* The project uses the command `yarn build` to compile the TypeScript code into JavaScript.
+
+* Run `yarn build`, then `yarn start` to compile the TypeScript files and run the project.
